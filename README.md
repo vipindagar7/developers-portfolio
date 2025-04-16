@@ -1,23 +1,17 @@
 # 💼 Vipin Dagar - Developer Portfolio
 
-Welcome to my personal developer portfolio!  
+Welcome to my personal developer portfolio!
 Built to showcase my projects, skills, and experience in full-stack development.
 
 ## 🚀 About Me
 
-I'm **Vipin Dagar**, a passionate **Full Stack Developer** with a knack for building modern, scalable web applications using the **MERN stack**, **Django**, and other modern tools.
-
-## 🌐 Live Site
-
-👉 [Visit Portfolio](https://your-portfolio-link.com)
-
----
+I'm **Vipin Dagar**, a passionate **Full Stack Developer** with a knack for building modern, scalable web applications using the **MERN stack**, **Django**, and other modern tools
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React.js, Tailwind CSS, ShadCN UI, Framer Motion  
-- **Backend**: Node.js, Express.js, Django, Django REST Framework  
-- **Database**: MongoDB, PostgreSQL  
+- **Frontend**: React.js, Tailwind CSS, ShadCN UI, Framer Motion
+- **Backend**: Node.js, Express.js, Django, Django REST Framework
+- **Database**: MongoDB, PostgreSQL
 - **Others**: Three.js (3D), Vite, Redux, EmailJS, Nodemailer
 
 ---
@@ -50,8 +44,8 @@ I'm **Vipin Dagar**, a passionate **Full Stack Developer** with a knack for buil
 
 Feel free to connect with me:
 
-- Email: [vipindagar.code@gmail.com](mailto:vipindagar.code@gmail.com)  
-- GitHub: [github.com/vipindagar7](https://github.com/vipindagar7)  
+- Email: [vipindagar.code@gmail.com](mailto:vipindagar.code@gmail.com)
+- GitHub: [github.com/vipindagar7](https://github.com/vipindagar7)
 - LinkedIn: [linkedin.com/in/vipindagar07](https://linkedin.com/in/vipindagar07)
 
 ---
