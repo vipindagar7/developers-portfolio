@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 💼 Vipin Dagar - Developer Portfolio
 
-## Getting Started
+Welcome to my personal developer portfolio!  
+Built to showcase my projects, skills, and experience in full-stack development.
 
-First, run the development server:
+## 🚀 About Me
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+I'm **Vipin Dagar**, a passionate **Full Stack Developer** with a knack for building modern, scalable web applications using the **MERN stack**, **Django**, and other modern tools.
+
+## 🌐 Live Site
+
+👉 [Visit Portfolio](https://your-portfolio-link.com)
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React.js, Tailwind CSS, ShadCN UI, Framer Motion  
+- **Backend**: Node.js, Express.js, Django, Django REST Framework  
+- **Database**: MongoDB, PostgreSQL  
+- **Others**: Three.js (3D), Vite, Redux, EmailJS, Nodemailer
+
+---
+
+## 📂 Folder Structure
+
+```
+📁 src/
+├── components/         # Reusable components (Nav, Footer, Forms, 3D Model)
+├── pages/              # Pages (Home, Projects, Contact)
+├── assets/             # Images, Icons, and 3D models
+├── utils/              # Helper functions and config
+└── styles/             # Tailwind and global styles
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 📸 Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 🌈 Beautiful, responsive design
+- 🧩 Dynamic 3D model (Three.js)
+- 📨 Functional contact form with Email sending
+- 🧠 Project & experience showcase
+- 🎨 Smooth animations with Framer Motion
+- ⚡ Optimized performance with lazy loading & Suspense
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📧 Contact
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Feel free to connect with me:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Email: [vipindagar.code@gmail.com](mailto:vipindagar.code@gmail.com)  
+- GitHub: [github.com/vipindagar7](https://github.com/vipindagar7)  
+- LinkedIn: [linkedin.com/in/vipindagar07](https://linkedin.com/in/vipindagar07)
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🏗️ Installation & Setup
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+# Clone this repository
+git clone https://github.com/vipindagar7/portfolio.git
+
+# Navigate to the folder
+cd portfolio
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
+```
+
+---
+
+## 🧪 Feedback & Contributions
+
+If you find any bugs or want to suggest improvements, feel free to open an issue or PR.
+
+---
+
+## 🔐 License
+
+This project is licensed under the [MIT License](LICENSE).
