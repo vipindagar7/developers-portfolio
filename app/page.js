@@ -61,7 +61,7 @@ export default function Home() {
             Hello World!
           </motion.h1>
           <motion.h1 className="text-2xl md:text-4xl my-1" variants={fadeIn} custom={2}>
-            I'm Vipin Dagar
+            I&apos;m Vipin Dagar
           </motion.h1>
           <motion.h1 className="text-xl md:text-3xl my-1" variants={fadeIn} custom={3}>
             Full Stack Developer
