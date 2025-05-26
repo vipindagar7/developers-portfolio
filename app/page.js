@@ -67,7 +67,7 @@ export default function Home() {
             Full Stack Developer
           </motion.h1>
           <motion.p className="" variants={fadeIn} custom={4}>
-            I build modern, scalable full-stack apps using MERN, Django & modern tools.
+            I build modern, scalable full-stack apps using MERN, React Native, Django & modern tools.
           </motion.p>
 
           <motion.div variants={fadeIn} custom={5}>
@@ -120,7 +120,7 @@ export default function Home() {
       </section>
 
       <section id="contact" className="flex flex-col justify-center min-h-screen w-full px-4 py-10">
-        <h2 className="text-4xl font-bold text-center text-gray-800 dark:text-white">
+        <h2 className="text-4xl font-bold text-center text-gray-800 dark:text-white mb-8">
           Get In Touch
         </h2>
         <div className="flex flex-col lg:flex-row justify-center items-start gap-10 max-w-7xl mx-auto w-full">

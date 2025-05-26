@@ -34,6 +34,7 @@ export default function Skills() {
         { title: 'JavaScript', icon: FaJs, color: 'text-yellow-400 dark:text-yellow-300' },
         { title: 'TypeScript', icon: SiTypescript, color: 'text-blue-600 dark:text-blue-400' },
         { title: 'React', icon: FaReact, color: 'text-cyan-500 dark:text-cyan-400' },
+        { title: 'React Native', icon: FaReact, color: 'text-cyan-500 dark:text-cyan-400' },
         { title: 'Redux', icon: SiRedux, color: 'text-purple-600 dark:text-purple-400' },
         { title: 'Node.js', icon: FaNodeJs, color: 'text-green-600 dark:text-green-500' },
         { title: 'Express.js', icon: SiExpress, color: 'text-neutral-600 dark:text-white' },
@@ -46,7 +47,6 @@ export default function Skills() {
         { title: 'Docker', icon: FaDocker, color: 'text-blue-400 dark:text-blue-300' },
         { title: 'AWS', icon: FaAws, color: 'text-orange-600 dark:text-orange-400' },
         { title: 'Git', icon: FaGitAlt, color: 'text-red-600 dark:text-red-400' },
-
         { title: 'Tailwind CSS', icon: SiTailwindcss, color: 'text-sky-500 dark:text-sky-400' },
         { title: 'JWT', icon: SiJsonwebtokens, color: 'text-amber-700 dark:text-amber-400' },
         { title: 'Vite', icon: SiVite, color: 'text-purple-500 dark:text-purple-300' },
@@ -95,7 +95,7 @@ export default function Skills() {
                         viewport={{ once: true, amount: 0.8 }}
                     >
                         <skill.icon className={`${skill.color} h-9 w-9`} />
-                        <h4 className="mt-3 text-sm font-medium text-center">{skill.title}</h4>
+                        <h4 className="mt-3 text-sm font-medium text-center whitespace-nowrap">{skill.title}</h4>
                     </motion.div>
                 ))}
             </div>

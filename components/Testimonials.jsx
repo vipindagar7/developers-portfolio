@@ -34,12 +34,10 @@ const Testimonials = () => {
             <div className="flex flex-col justify-center items-center">
 
                 <div className="my-4">
-                    <h2 className="text-2xl md:text-4xl">What People Say About</h2>
+                    <h2 className="text-2xl md:text-4xl">What People Say About me?</h2>
                 </div>
             </div>
             <div className='flex flex-wrap justify-center items-center'>
-
-
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {testimonials.map((t, i) => (
                         <motion.div
