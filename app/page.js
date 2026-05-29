@@ -1,6 +1,6 @@
 'use client'
 import Link from "next/link";
-
+import { useEffect } from "react";
 // components importing
 import { Services } from "@/components/Services";
 import { Button } from "@/components/ui/button";
