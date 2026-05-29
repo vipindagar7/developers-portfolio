@@ -34,78 +34,104 @@ export default function Home() {
     // Prevent duplicate loading
     if (document.getElementById("abot-btn")) return;
 
-    (function () {
-      "use strict";
+   (function () {
+  'use strict';
+  if (document.getElementById('abot-btn')) return;
 
-      const cfg = window.ChatBotConfig || {};
-      const apiBase = (cfg.apiBase || "http://localhost:5000").replace(
-        /\/$/,
-        ""
-      );
-      const chatUrl =
-        cfg.chatUrl || apiBase.replace(":5000", ":5173");
-      const widgetId = cfg.widgetId || "default";
+  var cfg      = window.ChatBotConfig || {};
+  var apiBase  = (cfg.apiBase  || 'http://localhost:3001').replace(/\/$/, '');
+  var chatUrl  = (cfg.chatUrl  || 'http://localhost:5174').replace(/\/$/, '');
+  var widgetId = cfg.widgetId  || 'default';
 
-      // Styles
-      const css = document.createElement("style");
-      css.textContent =
-        '#abot-btn{position:fixed;bottom:24px;right:24px;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#2563EB,#7C3AED);border:none;cursor:pointer;box-shadow:0 4px 18px rgba(37,99,235,.45);z-index:2147483646;display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s;padding:0}' +
-        '#abot-btn:hover{transform:scale(1.08);box-shadow:0 6px 26px rgba(37,99,235,.55)}' +
-        '#abot-btn .ico-chat{display:block}#abot-btn.open .ico-chat{display:none}' +
-        '#abot-btn .ico-close{display:none}#abot-btn.open .ico-close{display:block}' +
-        '#abot-popup{position:fixed;bottom:94px;right:24px;width:390px;height:620px;border-radius:18px;border:none;box-shadow:0 24px 64px rgba(0,0,0,.18);z-index:2147483645;opacity:0;transform:translateY(18px) scale(.96);transition:opacity .22s,transform .22s;pointer-events:none;background:#fff}' +
-        '#abot-popup.open{opacity:1;transform:none;pointer-events:all}' +
-        '#abot-dot{position:absolute;top:-3px;right:-3px;width:16px;height:16px;background:#ef4444;border-radius:50%;border:2px solid #fff;display:none}' +
-        '#abot-ring{position:absolute;top:-3px;right:-3px;width:16px;height:16px;background:rgba(239,68,68,.35);border-radius:50%;animation:abotpulse 1.6s ease-out infinite}' +
-        '@keyframes abotpulse{0%{transform:scale(1);opacity:1}100%{transform:scale(2.6);opacity:0}}' +
-        '@media(max-width:480px){#abot-popup{width:100vw;height:100dvh;bottom:0;right:0;border-radius:0}#abot-btn{bottom:16px;right:16px}}';
+  // ── Styles ──────────────────────────────────────────────────────────────────
+  var css = document.createElement('style');
+  css.textContent =
+    // Floating button
+    '#abot-btn{position:fixed;bottom:24px;right:24px;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#2563EB,#7C3AED);border:none;cursor:pointer;box-shadow:0 4px 18px rgba(37,99,235,.45);z-index:2147483646;display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s;padding:0}' +
+    '#abot-btn:hover{transform:scale(1.08);box-shadow:0 6px 26px rgba(37,99,235,.55)}' +
+    '#abot-btn .ico-chat{display:block}#abot-btn.open .ico-chat{display:none}' +
+    '#abot-btn .ico-close{display:none}#abot-btn.open .ico-close{display:block}' +
+    // Popup iframe
+    '#abot-popup{position:fixed;bottom:94px;right:24px;width:390px;height:620px;border-radius:18px;border:none;box-shadow:0 24px 64px rgba(0,0,0,.18);z-index:2147483645;opacity:0;transform:translateY(18px) scale(.96);transition:opacity .22s,transform .22s;pointer-events:none;background:#fff;overflow:hidden}' +
+    '#abot-popup.open{opacity:1;transform:none;pointer-events:all}' +
+    // Notification dot
+    '#abot-dot{position:absolute;top:-3px;right:-3px;width:16px;height:16px;background:#ef4444;border-radius:50%;border:2px solid #fff;display:none}' +
+    '#abot-ring{position:absolute;top:-3px;right:-3px;width:16px;height:16px;background:rgba(239,68,68,.35);border-radius:50%;animation:abotpulse 1.6s ease-out infinite}' +
+    '@keyframes abotpulse{0%{transform:scale(1);opacity:1}100%{transform:scale(2.6);opacity:0}}' +
+    // ── Close (X) button pinned to TOP-RIGHT of popup ──
+    '#abot-close{position:fixed;z-index:2147483647;' +
+      'bottom:calc(94px + 620px - 18px);' +   /* top edge of popup + overlap */
+      'right:calc(24px - 14px);' +            /* right edge of popup, centred on border */
+      'width:32px;height:32px;border-radius:50%;' +
+      'background:#1e293b;border:2px solid #fff;' +
+      'cursor:pointer;display:none;align-items:center;justify-content:center;' +
+      'box-shadow:0 2px 8px rgba(0,0,0,.25);transition:background .15s}' +
+    '#abot-close:hover{background:#374151}' +
+    '#abot-close.visible{display:flex}' +
+    // Mobile: full screen popup, close btn top-right
+    '@media(max-width:480px){' +
+      '#abot-popup{width:100vw;height:100dvh;bottom:0;right:0;border-radius:0}' +
+      '#abot-btn{bottom:16px;right:16px}' +
+      '#abot-close{bottom:auto;top:10px;right:10px}' +
+    '}';
+  document.head.appendChild(css);
 
-      document.head.appendChild(css);
+  // ── Floating chat button ────────────────────────────────────────────────────
+  var btn = document.createElement('button');
+  btn.id = 'abot-btn';
+  btn.setAttribute('aria-label', 'Open Admission Chat');
+  btn.innerHTML =
+    '<svg class="ico-chat" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>' +
+    '<svg class="ico-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +
+    '<div id="abot-dot"><div id="abot-ring"></div></div>';
 
-      // Button
-      const btn = document.createElement("button");
-      btn.id = "abot-btn";
-      btn.setAttribute("aria-label", "Open Admission Chat");
-      btn.innerHTML =
-        '<svg class="ico-chat" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>' +
-        '<svg class="ico-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +
-        '<div id="abot-dot"><div id="abot-ring"></div></div>';
+  // ── X close button (top-right corner of popup) ──────────────────────────────
+  var closeBtn = document.createElement('button');
+  closeBtn.id = 'abot-close';
+  closeBtn.setAttribute('aria-label', 'Close chat');
+  closeBtn.innerHTML =
+    '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">' +
+    '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
 
-      // Iframe
-      const popup = document.createElement("iframe");
-      popup.id = "abot-popup";
-      popup.src =
-        `${chatUrl}?widgetId=${widgetId}&apiBase=` +
-        encodeURIComponent(apiBase);
-      popup.title = "Admission Assistant";
-      popup.allow = "clipboard-write";
+  // ── Iframe ──────────────────────────────────────────────────────────────────
+  var popup = document.createElement('iframe');
+  popup.id    = 'abot-popup';
+  popup.src   = chatUrl + '?widgetId=' + encodeURIComponent(widgetId) + '&apiBase=' + encodeURIComponent(apiBase);
+  popup.title = 'Admission Assistant';
+  popup.allow = 'clipboard-write';
 
-      document.body.appendChild(btn);
-      document.body.appendChild(popup);
+  document.body.appendChild(btn);
+  document.body.appendChild(closeBtn);
+  document.body.appendChild(popup);
 
-      let isOpen = false;
+  var isOpen = false;
 
-      function toggle() {
-        isOpen = !isOpen;
-        btn.classList.toggle("open", isOpen);
-        popup.classList.toggle("open", isOpen);
+  function toggle() {
+    isOpen = !isOpen;
+    btn.classList.toggle('open', isOpen);
+    popup.classList.toggle('open', isOpen);
+    closeBtn.classList.toggle('visible', isOpen);
+    btn.setAttribute('aria-expanded', String(isOpen));
+    var dot = document.getElementById('abot-dot');
+    if (dot && isOpen) dot.style.display = 'none';
+  }
 
-        const dot = document.getElementById("abot-dot");
-        if (dot && isOpen) dot.style.display = "none";
-      }
+  btn.addEventListener('click', toggle);
+  closeBtn.addEventListener('click', toggle);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && isOpen) toggle(); });
 
-      btn.addEventListener("click", toggle);
+  // Show red dot after 6 seconds
+  setTimeout(function () {
+    var dot = document.getElementById('abot-dot');
+    if (dot && !isOpen) dot.style.display = 'block';
+  }, 6000);
 
-      setTimeout(() => {
-        const dot = document.getElementById("abot-dot");
-        if (dot && !isOpen) dot.style.display = "block";
-      }, 6000);
-
-      window.AdmissionBot = {
-        open: () => !isOpen && toggle(),
-        close: () => isOpen && toggle(),
-      };
-    })();
+  window.AdmissionBot = {
+    open:   function () { if (!isOpen) toggle(); },
+    close:  function () { if (isOpen)  toggle(); },
+    toggle: toggle
+  };
+})();
   }, []);
 
   const fadeIn = {
